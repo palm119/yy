@@ -103,7 +103,7 @@ namespace dysv17f {
      * @param pinRX RX端口, eg: SerialPin.P0
      * @param pinTX TX端口, eg: SerialPin.P1
      */
-    //% blockId="dfplayermini_connect" block="连接DY-SV17F设备， RX引脚：%pinRX|TX引脚：%pinTX"
+    //% blockId="dfplayermini_connect" block="连接DY-SV17F设备， RX引脚%pinRX|TX引脚%pinTX"
     //% weight=96
     export function connect(pinRX: SerialPin = SerialPin.P0, pinTX: SerialPin = SerialPin.P1): void {
         serial.redirect(pinRX, pinTX, BaudRate.BaudRate9600)
@@ -115,7 +115,7 @@ namespace dysv17f {
      * 按下按钮
      * @param myPlayType 动作类型, eg: 0
      */
-    //% blockId="dfplayermini_press" block="按下：%myPlayType"
+    //% blockId="dfplayermini_press" block="按下%myPlayType"
     //% weight=95
     export function press(myPlayType: playType): void {
         innerCall(myPlayType, 0x00, "")
@@ -126,7 +126,7 @@ namespace dysv17f {
      * @param dir       目录
      * @param fileName  文件名
      */
-    //% blockId="dfplayermini_playMp3Folder" block="指定播放mp3文件夹中歌曲，文件：%fileNumber|重复播放：%setRepeat"
+    //% blockId="dfplayermini_playMp3Folder" block="指定播放mp3文件夹中歌曲，目录%dir|文件名%fileName"
     //% weight=94 fileNumber.min=1 fileNumber.max=255
     export function playFlash(dir: string, fileName: string): void {
         let file
@@ -144,7 +144,7 @@ namespace dysv17f {
      * @param volume 设置音量, eg: 30
     //% weight=93
     */
-    //% blockId="dfplayermini_setVolume" block="设置音量大小(0~30)：%volume"
+    //% blockId="dfplayermini_setVolume" block="设置音量大小(0~30)%volume"
     //% weight=94 volume.min=0 volume.max=30
     export function setVolume(volume: number): void {
         innerCall(0x13, 0x01, String.fromCharCode(volume))
@@ -152,9 +152,9 @@ namespace dysv17f {
 
     /**
      * 设置播放模式
-     * @param mPlayLoop 播放模式 eg: 2
+     * @param mPlayLoop 播放模式 eg: 0
     */
-    //% block="设置播放模式：%mPlayLoop"
+    //% block="设置播放模式%mPlayLoop"
     //% weight=92
     export function setLoop(mPlayLoop: playLoop): void {
         innerCall(0x18, 0x01, String.fromCharCode(mPlayLoop))
@@ -164,7 +164,7 @@ namespace dysv17f {
      * 设置均衡器
      * @param eq 设置EQ, eg: 0
    */
-    //% blockId="dfplayermini_setEQ" block="设置EQ：%eq"
+    //% blockId="dfplayermini_setEQ" block="设置EQ%eq"
     //% weight=91
     export function setEQ(eq: EQ): void {
         innerCall(0x1A, 0x01, String.fromCharCode(eq))
