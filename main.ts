@@ -3,66 +3,66 @@
 * Create by xrh
 */
 
-//% weight=9 color=#1133ff icon="\uf001" block="MP3²¥·ÅÆ÷"
+//% weight=9 color=#1133ff icon="\uf001" block="MP3æ’­æ”¾å™¨"
 namespace dysv17f {
     let isConnected: boolean = false;
 
     /**
-     * Ã¶¾Ù£º¶¯×÷
+     * æšä¸¾ï¼šåŠ¨ä½œ
      */
     export enum playType {
-        //% block="²¥·Å"
+        //% block="æ’­æ”¾"
         Play = 0x02,
-        //% block="ÔİÍ£"
+        //% block="æš‚åœ"
         Pause = 0x03,
-        //% block="Í£Ö¹"
+        //% block="åœæ­¢"
         Stop = 0x04,
-        //% block="ÉÏÒ»Ê×"
+        //% block="ä¸Šä¸€é¦–"
         PlayPrevious = 0x05,
-        //% block="ÏÂÒ»Ê×"
+        //% block="ä¸‹ä¸€é¦–"
         PlayNext = 0x06
     }
 
     /**
-     * Ã¶¾Ù£ºEQ
+     * æšä¸¾ï¼šEQ
      */
     export enum EQ {
-        //% block="Õı³£"
+        //% block="æ­£å¸¸"
         Normal = 0x00,
-        //% block="Á÷ĞĞ"
+        //% block="æµè¡Œ"
         Pop = 0x01,
-        //% block="Ò¡¹ö"
+        //% block="æ‘‡æ»š"
         Rock = 0x02,
-        //% block="¾ôÊ¿"
+        //% block="çˆµå£«"
         Jazz = 0x03,
-        //% block="¹Åµä"
+        //% block="å¤å…¸"
         Classic = 0x04
     }
 
     /**
-     * Ã¶¾Ù£º²¥·ÅÄ£Ê½
+     * æšä¸¾ï¼šæ’­æ”¾æ¨¡å¼
      */
     export enum playLoop {
-        //% block="È«ÅÌÑ­»·"
+        //% block="å…¨ç›˜å¾ªç¯"
         AllLoop = 0x00,
-        //% block="µ¥ÇúÑ­»·"
+        //% block="å•æ›²å¾ªç¯"
         SingLoop = 0x01,
-        //% block="µ¥ÇúÍ£Ö¹"
+        //% block="å•æ›²åœæ­¢"
         SingStop = 0x02,
-        //% block="È«ÅÌËæ»ú"
+        //% block="å…¨ç›˜éšæœº"
         AllRandom = 0x03,
-        //% block="Ä¿Â¼Ñ­»·"
+        //% block="ç›®å½•å¾ªç¯"
         DirLoop = 0x04,
-        //% block="Ä¿Â¼Ëæ»ú"
+        //% block="ç›®å½•éšæœº"
         DirRandom = 0x05,
-        //% block="Ä¿Â¼Ë³Ğò"
+        //% block="ç›®å½•é¡ºåº"
         DirOrder = 0x06,
-        //% block="Ë³Ğò²¥·Å"
+        //% block="é¡ºåºæ’­æ”¾"
         AllOrder = 0x07
    }
 
     /**
-     * ·¢ËÍ×éºÏÃüÁîµ½´®¿Ú
+     * å‘é€ç»„åˆå‘½ä»¤åˆ°ä¸²å£
      */
     function innerCall(CMD: number, len: number, data: string): void {
         if (!isConnected) {
@@ -72,17 +72,17 @@ namespace dysv17f {
         /* [AA,CMD,len,data,checksum] */
         let dataArr = pins.createBuffer(len+4);
 
-        //Êı¾İÍ·
-        dataArr[0] = 0xAA   //¹Ì¶¨
-        dataArr[1] = CMD    //ÃüÁî
-        dataArr[2] = len    //³¤¶È
+        //æ•°æ®å¤´
+        dataArr[0] = 0xAA   //å›ºå®š
+        dataArr[1] = CMD    //å‘½ä»¤
+        dataArr[2] = len    //é•¿åº¦
     
-        //Êı¾İÎ»
+        //æ•°æ®ä½
         for (let i = 0; i < len; i++) {
             dataArr.setNumber(NumberFormat.UInt8BE, i+3, data.charCodeAt(i))
         }
 
-        //Ğ£ÑéÎ»
+        //æ ¡éªŒä½
         let total = 0;
         for (let i = 0; i < len+3; i++) {
             total += dataArr[i]
@@ -93,17 +93,17 @@ namespace dysv17f {
         //     basic.showNumber(dataArr[i])
         // }
 
-        //·¢ËÍÊı¾İ
+        //å‘é€æ•°æ®
         serial.writeBuffer(dataArr)
         basic.pause(100)
     }
 
     /**
-     * Á¬½ÓDY-SV17FÉè±¸
-     * @param pinRX RX¶Ë¿Ú, eg: SerialPin.P0
-     * @param pinTX TX¶Ë¿Ú, eg: SerialPin.P1
+     * è¿æ¥DY-SV17Fè®¾å¤‡
+     * @param pinRX RXç«¯å£, eg: SerialPin.P0
+     * @param pinTX TXç«¯å£, eg: SerialPin.P1
      */
-    //% blockId="dfplayermini_connect" block="Á¬½ÓDY-SV17FÉè±¸£¬ RXÒı½Å£º%pinRX|TXÒı½Å£º%pinTX"
+    //% blockId="dfplayermini_connect" block="è¿æ¥DY-SV17Fè®¾å¤‡ï¼Œ RXå¼•è„šï¼š%pinRX|TXå¼•è„šï¼š%pinTX"
     //% weight=96
     export function connect(pinRX: SerialPin = SerialPin.P0, pinTX: SerialPin = SerialPin.P1): void {
         serial.redirect(pinRX, pinTX, BaudRate.BaudRate9600)
@@ -112,21 +112,21 @@ namespace dysv17f {
     }
 
     /**
-     * °´ÏÂ°´Å¥
-     * @param myPlayType ¶¯×÷ÀàĞÍ, eg: 0
+     * æŒ‰ä¸‹æŒ‰é’®
+     * @param myPlayType åŠ¨ä½œç±»å‹, eg: 0
      */
-    //% blockId="dfplayermini_press" block="°´ÏÂ£º%myPlayType"
+    //% blockId="dfplayermini_press" block="æŒ‰ä¸‹ï¼š%myPlayType"
     //% weight=95
     export function press(myPlayType: playType): void {
         innerCall(myPlayType, 0x00, "")
     }
 
     /**
-     * ²¥·ÅFLASHµÄÎÄ¼ş¼ĞÖĞ¸èÇú£¬Ä¿Â¼Îª¿ÕÔò²¥·Å¸üÄ¿Â¼¸èÇú
-     * @param dir       Ä¿Â¼
-     * @param fileName  ÎÄ¼şÃû
+     * æ’­æ”¾FLASHçš„æ–‡ä»¶å¤¹ä¸­æ­Œæ›²ï¼Œç›®å½•ä¸ºç©ºåˆ™æ’­æ”¾æ›´ç›®å½•æ­Œæ›²
+     * @param dir       ç›®å½•
+     * @param fileName  æ–‡ä»¶å
      */
-    //% blockId="dfplayermini_playMp3Folder" block="Ö¸¶¨²¥·Åmp3ÎÄ¼ş¼ĞÖĞ¸èÇú£¬ÎÄ¼ş£º%fileNumber|ÖØ¸´²¥·Å£º%setRepeat"
+    //% blockId="dfplayermini_playMp3Folder" block="æŒ‡å®šæ’­æ”¾mp3æ–‡ä»¶å¤¹ä¸­æ­Œæ›²ï¼Œæ–‡ä»¶ï¼š%fileNumber|é‡å¤æ’­æ”¾ï¼š%setRepeat"
     //% weight=94 fileNumber.min=1 fileNumber.max=255
     export function playFlash(dir: string, fileName: string): void {
         let file
@@ -140,38 +140,38 @@ namespace dysv17f {
     }
 
     /**
-     * ÉèÖÃ²¥·ÅÒôÁ¿
-     * @param volume ÉèÖÃÒôÁ¿, eg: 30
+     * è®¾ç½®æ’­æ”¾éŸ³é‡
+     * @param volume è®¾ç½®éŸ³é‡, eg: 30
     //% weight=93
     */
-    //% blockId="dfplayermini_setVolume" block="ÉèÖÃÒôÁ¿´óĞ¡(0~30)£º%volume"
+    //% blockId="dfplayermini_setVolume" block="è®¾ç½®éŸ³é‡å¤§å°(0~30)ï¼š%volume"
     //% weight=94 volume.min=0 volume.max=30
     export function setVolume(volume: number): void {
         innerCall(0x13, 0x01, String.fromCharCode(volume))
     }
 
     /**
-     * ÉèÖÃ²¥·ÅÄ£Ê½
-     * @param mPlayLoop ²¥·ÅÄ£Ê½ eg: 2
+     * è®¾ç½®æ’­æ”¾æ¨¡å¼
+     * @param mPlayLoop æ’­æ”¾æ¨¡å¼ eg: 2
     */
-    //% block="ÉèÖÃ²¥·ÅÄ£Ê½£º%mPlayLoop"
+    //% block="è®¾ç½®æ’­æ”¾æ¨¡å¼ï¼š%mPlayLoop"
     //% weight=92
     export function setLoop(mPlayLoop: playLoop): void {
         innerCall(0x18, 0x01, String.fromCharCode(mPlayLoop))
      }
 
     /**
-     * ÉèÖÃ¾ùºâÆ÷
-     * @param eq ÉèÖÃEQ, eg: 0
+     * è®¾ç½®å‡è¡¡å™¨
+     * @param eq è®¾ç½®EQ, eg: 0
    */
-    //% blockId="dfplayermini_setEQ" block="ÉèÖÃEQ£º%eq"
+    //% blockId="dfplayermini_setEQ" block="è®¾ç½®EQï¼š%eq"
     //% weight=91
     export function setEQ(eq: EQ): void {
         innerCall(0x1A, 0x01, String.fromCharCode(eq))
     }
 
     /**
-     * ×Ö·û´®×ª»¯Îª´óĞ´
+     * å­—ç¬¦ä¸²è½¬åŒ–ä¸ºå¤§å†™
     */
     function strToUpperCase(str: string): string {
         let ret = ''
