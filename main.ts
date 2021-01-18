@@ -132,7 +132,6 @@ namespace dysv17f {
         let file
         if (dir.length>0) {
             file = "/"+ dir+"*/"+fileName+"*mp3";
-
         } else {
             file = "/"+fileName+"*mp3";
         }
