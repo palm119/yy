@@ -122,7 +122,7 @@ namespace dysv17f {
     }
 
     /**
-     * 播放FLASH的文件夹中歌曲，目录为空则播放更目录歌曲
+     * 播放FLASH的文件夹中歌曲，目录为空则播放根目录歌曲
      * @param dir       目录
      * @param fileName  文件名
      */
