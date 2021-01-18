@@ -1,0 +1,14 @@
+{
+    "name": "dysv17f",
+    "version": "0.1",
+    "description": "Makecode pxt extension for DY-SV17F mp3 Audio Board, If you have any questions, please contact me: xurunhua@139.com",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "public": true
+}
